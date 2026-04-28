@@ -5,7 +5,7 @@ object GithubActionsGenerator {
   object Step {
     val Checkout: Json = Json.obj(
       "name" := "Checkout",
-      "uses" := "actions/checkout@v4",
+      "uses" := "actions/checkout@v6",
       "with" := Json.obj(
         "fetch-depth" := 0
       )
@@ -13,7 +13,7 @@ object GithubActionsGenerator {
 
     def setupJava(javaVersion: String): Json = Json.obj(
       "name" := "Setup Java",
-      "uses" := "actions/setup-java@v4",
+      "uses" := "actions/setup-java@v5",
       "with" := Json.obj(
         "java-version" := javaVersion,
         "distribution" := "temurin",
@@ -71,7 +71,7 @@ object GithubActionsGenerator {
         if (uploadArtifact)
           Json.obj(
             "name" := "Upload",
-            "uses" := "actions/upload-artifact@v4",
+            "uses" := "actions/upload-artifact@v7",
             "with" := Json.obj(
               "name" := "documentation",
               "path" := "./modules/documentation/.jvm/target/paradox/site/main/",
@@ -107,7 +107,7 @@ object GithubActionsGenerator {
       steps = List(
         Json.obj(
           "name" := "Download artifact",
-          "uses" := "actions/download-artifact@v4",
+          "uses" := "actions/download-artifact@v8",
           "with" := Json.obj(
             "name" := "documentation",
             "path" := "./documentation"
